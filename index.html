@@ -9,7 +9,10 @@
                 background-position: center;
             }
             #score {
+                position:absolute;
                 color:crimson;
+                font-weight:bolder;
+                font-size: large;
             }
         </style>
     </head>
@@ -17,7 +20,7 @@
         <p id="score"></p>
         <script>
             var w = window.innerWidth
-            var h = window.innerHeight-50
+            var h = window.innerHeight
             var player;
             var boing;
             var pillar;
@@ -84,7 +87,7 @@
                     if ((keyIsDown(87)) && (this.y>30)) {
                         this.y -= 7;
                     }
-                    if ((keyIsDown(83)) && (this.y<h-30)) {
+                    if ((keyIsDown(83)) && (this.y<h-40)) {
                         this.y += 7
                     }
                 }
