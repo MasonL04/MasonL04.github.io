@@ -12,19 +12,26 @@
                 justify-content: center;
                 align-items: center;
                 text-align: center;
-                height: 50vh;
+                height: 60vh;
                 width:50vw;
                 background-color:black;
-                top: 11vw;
+                top: 8vw;
                 left: 25vw;
+                border-color: aqua;
+                border-width: 5px;
+                border-style: solid;
             }
             h1 {
                 color:white;
-                font-size: 300%;
+                font-size: 290%;
             }
             p{
                 color: white;
-                font-size: 130%;
+                font-size: 110%;
+            }
+            button {
+                background-color: black;
+                color:white;
             }
         </style>
     </head>
@@ -35,6 +42,12 @@
             <p>S to move down</p>
             <p>A to move left</p>
             <p>D to move right</p>
+            <button onclick="game()">Play</button>
         </div>
+        <script>
+            function game() {
+                window.location.href="https://masonl04.github.io/index.html"
+            }
+        </script>
     </body>
 </html>
