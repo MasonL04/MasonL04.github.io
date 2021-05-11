@@ -24,14 +24,22 @@
             h1 {
                 color: #5ad0f8;
             }
+            button {
+                background-color: black;
+                color:#5ad0f8;
+                font-size: 110%;
+            }
         </style>
     </head>
     <body>
         <div id="gameover">
             <h1>GAME OVER</h1>
+            <button onclick="playAgain()">Play Again</button>
         </div>
         <script>
-            
+            function playAgain() {
+                window.location.href="https://masonl04.github.io/index.html"
+            }
         </script>
     </body>
 </html>
