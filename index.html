@@ -1,268 +1,64 @@
 <html>
     <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/p5.collide2d"></script>
-        <title>Dodge em</title>
         <style>
             body {
-                overflow:hidden;
+                overflow: hidden;
                 background-image: url("neon.jpg");
-                background-position: center;
-            }
-            #score {
-                position:absolute;
-                color:#5ad0f8;
-                font-weight:bolder;
-                font-size: 25px;
-                text-shadow: 2px 1px 10px #5ad0f8;
             }
             #inst {
                 position:absolute;
-                right:1%;
-                background: black;
-                color: #5ad0f8;
-                padding:1%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                height: 80vh;
+                width: 50vw;
+                background-color:black;
+                top: 4vw;
+                left: 25vw;
+                border-color: #5ad0f8;
+                border-width: 5px;
+                border-style: solid;
             }
             h1 {
+                color:#5ad0f8;
+                font-size: 290%;
+                text-shadow: 2px 1px 50px #5ad0f8;
+            }
+            h2 {
+                color: #5ad0f8;
+                font-size:200%;
+                text-decoration: underline;
                 text-shadow: 2px 1px 10px #5ad0f8;
+                
+            }
+            p{
+                color: #5ad0f8;
+                font-size: 110%;
+            }
+            button {
+                background-color: black;
+                color:#5ad0f8;
+                font-size: 110%;
             }
         </style>
     </head>
     <body>
-        <p id="score"></p>
         <div id="inst">
-            <h1>Intructions</h1>
+            <h1>Dodge em</h1>
+            <h2>Instructions</h2>
+            <p>Dodge the rectangles</p>
             <p>W to move up</p>
             <p>S to move down</p>
             <p>A to move left</p>
             <p>D to move right</p>
-            <p>Dodge the rectangles</p>
+            <button onclick="game()">Play</button>
         </div>
         <script>
-            var w = window.innerWidth
-            var h = window.innerHeight
-            var player;
-            var boing;
-            var pillar;
-            var pillar2;
-            var pillar3;
-            var pillar4;
-            var pillar5;
-            var hit = false;
-            var timer = 0;
-            function setup() {
-                createCanvas(w,h)
-                player = new player();
-                pillar = new pillar();
-                pillar2 = new pillar2();
-                pillar3 = new pillar3();
-                pillar4 = new pillar4();
-                pillar5 = new pillar5();
+            function game() {
+                window.location.href="https://masonl04.github.io/game.html"
             }
-            function draw() {
-                clear();
-                player.show();
-                player.update();
-                //pillar 1
-                pillar.show();
-                pillar.update();
-                pillar.collide(player);
-                //pillar 2
-                pillar2.show();
-                pillar2.update();
-                pillar2.collide(player);
-                //pillar 3
-                pillar3.show();
-                pillar3.update();
-                pillar3.collide(player);
-                //pillar 4
-                pillar4.show();
-                pillar4.update();
-                pillar4.collide(player);
-                //pillar 5
-                pillar5.show();
-                pillar5.update();
-                pillar5.collide(player);
-                timer = (millis()/1000).toFixed()
-                if (millis() >= 1 + timer){
-                    timer =  millis()
-                    document.getElementById('score').innerHTML = (timer/1000).toFixed() + " seconds"
-                }
-            }
-            function player() {
-                this.x = 25;
-                this.y = h/2;
-                this.show = function() {
-                    fill(color('white'));
-                    ellipse(this.x,this.y,50,50);
-                    
-                }
-                this.update = function() {
-                    if((keyIsDown(65)) && (this.x>35)) {
-                        this.x -= 7;
-                    }
-                    if((keyIsDown(68)) && (this.x<w-50)) {
-                       this.x += 7;
-                    }  
-                    if ((keyIsDown(87)) && (this.y>30)) {
-                        this.y -= 7;
-                    }
-                    if ((keyIsDown(83)) && (this.y<h-40)) {
-                        this.y += 7
-                    }
-                }
-            }
-            function pillar() {
-                this.x = w;
-                this.y = random(0,h/2);
-                this.w = 200;
-                this.h = random(100,200);
-                this.s = 10;
-                this.show = function() {
-                    fill(color('#5ad0f8'));
-                    rect(this.x,this.y,this.w,this.h)
-                }
-                this.update = function() {
-                    if (this.x>10) {
-                        this.x -= this.s;
-                    }
-                    if (this.x<10) {
-                        this.x = w;
-                        this.h = random(100,200);
-                        this.y = random(0,h/2);
-                        this.s = random(10,20);
-                    } 
-                }
-                this.collide = function(player){
-                    this.hit = collideRectCircle(this.x,this.y,this.w,this.h,player.x,player.y,25);
-                    if(this.hit){
-                        window.alert("Time Survived: " + (timer/1000).toFixed() + " seconds")
-                        player.x = 0;
-                        document.location.href="https://masonl04.github.io/gameover.html"
-                    }
-                }
-            }
-            function pillar2() {
-                this.x = w+300;
-                this.y = random(0,h/2);
-                this.w = 200;
-                this.h = random(100,200);
-                this.s = 10;
-                this.show = function() {
-                    fill(color('#5ad0f8'));
-                    rect(this.x,this.y,this.w,this.h)
-                }
-                this.update = function() {
-                    if (this.x>10) {
-                        this.x -= this.s;
-                    }
-                    if (this.x<10) {
-                        this.x = w;
-                        this.h = random(100,200);
-                        this.y = random(0,h/2);
-                        this.s = random(10,20);
-                    } 
-                }
-                this.collide = function(player){
-                    this.hit = collideRectCircle(this.x,this.y,this.w,this.h,player.x,player.y,25);
-                    if(this.hit){
-                        window.alert("Time Survived: " + (timer/1000).toFixed() + " seconds")
-                        player.x = 0;
-                        document.location.href="https://masonl04.github.io/gameover.html"
-                    }
-                }
-            }
-            function pillar3() {
-                this.x = w+600;
-                this.y = random(0,h/2);
-                this.w = 200;
-                this.h = random(100,200);
-                this.s = 10;
-                this.show = function() {
-                    fill(color('#5ad0f8'));
-                    rect(this.x,this.y,this.w,this.h)
-                }
-                this.update = function() {
-                    if (this.x>10) {
-                        this.x -= this.s;
-                    }
-                    if (this.x<10) {
-                        this.x = w;
-                        this.h = random(100,200);
-                        this.y = random(0,h/2);
-                        this.s = random(10,20);
-                    } 
-                }
-                this.collide = function(player){
-                    this.hit = collideRectCircle(this.x,this.y,this.w,this.h,player.x,player.y,25);
-                    if(this.hit){
-                        window.alert("Time Survived: " + (timer/1000).toFixed() + " seconds")
-                        player.x = 0;
-                        document.location.href="https://masonl04.github.io/gameover.html"
-                    }
-                }
-            }
-            function pillar4() {
-                this.x = w+900;
-                this.y = random(h/2,h-200);
-                this.w = 200;
-                this.h = random(100,200);
-                this.s = 10;
-                this.show = function() {
-                    fill(color('#5ad0f8'));
-                    rect(this.x,this.y,this.w,this.h)
-                }
-                this.update = function() {
-                    if (this.x>10) {
-                        this.x -= this.s;
-                    }
-                    if (this.x<10) {
-                        this.x = w;
-                        this.h = random(100,200);
-                        this.y = random(h/2,h-200);
-                        this.s = random(10,20);
-                    } 
-                }
-                this.collide = function(player){
-                    this.hit = collideRectCircle(this.x,this.y,this.w,this.h,player.x,player.y,25);
-                    if(this.hit){
-                        window.alert("Time Survived: " + (timer/1000).toFixed() + " seconds")
-                        player.x = 0;
-                        document.location.href="https://masonl04.github.io/gameover.html"
-                    }
-                }
-            }
-            function pillar5() {
-                this.x = w+1200;
-                this.y = random(h/2,h-200);
-                this.w = 200;
-                this.h = random(100,200);
-                this.s = 10;
-                this.show = function() {
-                    fill(color('#5ad0f8'));
-                    rect(this.x,this.y,this.w,this.h)
-                }
-                this.update = function() {
-                    if (this.x>10) {
-                        this.x -= this.s;
-                    }
-                    if (this.x<10) {
-                        this.x = w;
-                        this.h = random(100,200);
-                        this.y = random(h/2,h-200);
-                        this.s = random(10,20);
-                    } 
-                }
-                this.collide = function(player){
-                    this.hit = collideRectCircle(this.x,this.y,this.w,this.h,player.x,player.y,25);
-                    if(this.hit){
-                        window.alert("Time Survived: " + (timer/1000).toFixed() + " seconds")
-                        player.x = 0;
-                        document.location.href="https://masonl04.github.io/gameover.html"
-                    }
-                }
-            }
-            
         </script>
     </body>
 </html>
