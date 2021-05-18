@@ -1,5 +1,6 @@
 <html>
     <head>
+        <script src="GameScript.js"></script>
         <style>
             body {
                 overflow: hidden;
@@ -31,18 +32,18 @@
                 color:#5ad0f8;
                 font-size: 110%;
             }
+            #FinalScore {
+                color:#5ad0f8;
+                font-size: 200%;
+                text-shadow: 2px 1px 50px #5ad0f8;
+            }
         </style>
     </head>
     <body>
         <div id="gameover">
             <h1>GAME OVER</h1>
-            <p id="score"></p>
+            <p id="FinalScore"></p>
             <button onclick="playAgain()">Play Again</button>
         </div>
-        <script>
-            function playAgain() {
-                window.location.href="https://masonl04.github.io/index.html"
-            }
-        </script>
     </body>
 </html>
