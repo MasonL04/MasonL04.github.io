@@ -228,7 +228,7 @@ function pillar5() {
 //gameover
 function gameover() {
     var score = localStorage.getItem('time')
-    document.getElementById('FinalScore').innerHTML = "Your lasted: " + (score/1000).toFixed() + " seconds"
+    document.getElementById('FinalScore').innerHTML = "You lasted: " + (score/1000).toFixed() + " seconds"
 }
 function playAgain() {
     window.location.href="https://masonl04.github.io/index.html"
